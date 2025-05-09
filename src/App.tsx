@@ -25,13 +25,13 @@ function App() {
         </main>
         <footer className="bg-blue-900 text-white py-6">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="flex items-center mb-4 md:mb-0">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center">
                 <BookOpenCheck className="mr-2" />
                 <span className="text-lg font-semibold">Student E-Library</span>
               </div>
-              <div className="text-sm text-blue-200">
-                © {new Date().getFullYear()} Student E-Library. All rights reserved.
+              <div className="text-sm font-calibri">
+                Project By- Kshitij Sinha, Akshit Yadav
               </div>
             </div>
           </div>

@@ -38,7 +38,7 @@ const BookList: React.FC = () => {
           className={`flex items-center px-4 py-2 rounded-md text-white ${
             filteredBooks.length === 0 || isDownloading
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700 transition-colors'
+              : 'bg-blue-600 hover:bg-blue-700 transition-colors hover:shadow-lg hover:animate-pulse'
           }`}
         >
           {isDownloading ? (
