@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpenCheck, Search } from 'lucide-react';
+import { useLibraryContext } from '../context/LibraryContext';
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const { searchQuery, setSearchQuery } = useLibraryContext();
   
   useEffect(() => {
     const handleScroll = () => {

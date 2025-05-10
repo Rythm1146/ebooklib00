@@ -10,10 +10,12 @@ interface LibraryContextType {
   recommendedBooks: RecommendedBook[];
   selectedCourse: string | null;
   selectedSemester: string | null;
+  searchQuery: string;
   downloadProgress: number;
   isLoading: boolean;
   setSelectedCourse: (courseId: string | null) => void;
   setSelectedSemester: (semesterId: string | null) => void;
+  setSearchQuery: (query: string) => void;
   setDownloadProgress: (progress: number) => void;
 }
 
@@ -26,6 +28,7 @@ export const LibraryProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [recommendedBooks, setRecommendedBooks] = useState<RecommendedBook[]>([]);
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
   const [selectedSemester, setSelectedSemester] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [downloadProgress, setDownloadProgress] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -73,11 +76,17 @@ export const LibraryProvider: React.FC<{ children: React.ReactNode }> = ({ child
     loadRecommendedBooks();
   }, [selectedCourse, selectedSemester]);
 
-  // Filter books based on selected course and semester
+  // Filter books based on selected course, semester, and search query
   const filteredBooks = books.filter((book) => {
     const matchesCourse = !selectedCourse || book.courseId === selectedCourse;
     const matchesSemester = !selectedSemester || book.semesterId === selectedSemester;
-    return matchesCourse && matchesSemester;
+    const matchesSearch = !searchQuery || 
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.courseCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.tags?.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    return matchesCourse && matchesSemester && matchesSearch;
   });
 
   return (
@@ -90,10 +99,12 @@ export const LibraryProvider: React.FC<{ children: React.ReactNode }> = ({ child
         recommendedBooks,
         selectedCourse,
         selectedSemester,
+        searchQuery,
         downloadProgress,
         isLoading,
         setSelectedCourse,
         setSelectedSemester,
+        setSearchQuery,
         setDownloadProgress
       }}
     >
