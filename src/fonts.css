@@ -1,0 +1,21 @@
+/* Custom font CSS */
+@font-face {
+  font-family: 'Calibri';
+  src: url('https://db.onlinewebfonts.com/t/11bb17404bcac335cc9b5a463d33dc10.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Calibri';
+  src: url('https://db.onlinewebfonts.com/t/4d1e5a238bb4da73c3f335bd95482d4c.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply Calibri to the entire site */
+.font-calibri {
+  font-family: 'Calibri', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
